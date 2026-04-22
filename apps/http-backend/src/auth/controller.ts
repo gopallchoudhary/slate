@@ -1,30 +1,30 @@
 import { Request, Response } from "express";
-import { SignUpSchema, SignInSchema } from "./models.js";
+import { signUpSchema, signInSchema } from "@repo/common/types";
 
-class AuthenticationController {
-    public async signUp(req: Request, res: Response) {
-        // Implement signup logic here
-        const validationResult = SignUpSchema.safeParse(req.body);
+    class AuthenticationController {
+        public async signUp(req: Request, res: Response) {
+            // Implement signup logic here
+            const validationResult = signUpSchema.safeParse(req.body);
 
-        if(validationResult.error) {
-            return res.status(400).json({ error: validationResult.error });
+            if (validationResult.error) {
+                return res.status(400).json({ error: validationResult.error });
+            }
+
+            const { firstName, lastName, email, password } = validationResult.data;
+
+
         }
 
-        const { firstName, lastName, email, password } = validationResult.data;
+        public async signIn(req: Request, res: Response) {
+            // Implement signin logic here
+            const validationResult = signInSchema.safeParse(req.body);
 
-        
-    }
+            if (validationResult.error) {
+                return res.status(400).json({ error: validationResult.error });
+            }
 
-    public async signIn(req: Request, res: Response) {
-        // Implement signin logic here
-        const validationResult = SignInSchema.safeParse(req.body);
-
-        if(validationResult.error) {
-            return res.status(400).json({ error: validationResult.error });
+            const { email, password } = validationResult.data;
         }
-
-        const { email, password } = validationResult.data;
     }
-}
 
 export default AuthenticationController

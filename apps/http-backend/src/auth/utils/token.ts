@@ -1,15 +1,16 @@
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '@repo/backend-common/config';
 
 export interface UserTokenPayloqd {
-    id: string
+    userId: string
 }
 
 export function generateToken(payload: UserTokenPayloqd) {
-    return jwt.sign(payload, process.env.JWT_SECRET || 'jwt_secret', {
+    return jwt.sign(payload, JWT_SECRET, {
         expiresIn: '1h',
     });
 }
 
 export function verifyToken(token: string) {
-    return jwt.verify(token, process.env.JWT_SECRET || 'jwt_secret');
+    return jwt.verify(token, JWT_SECRET);
 }

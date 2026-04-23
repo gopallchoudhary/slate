@@ -7,7 +7,7 @@
 		"strict": true,
 		"esModuleInterop": true,
 		"ignoreDeprecations": "6.0",
-		// "declaration": true,
-		// "declarationMap": true
+		"declaration": true,
+		"declarationMap": true
 	}
 }

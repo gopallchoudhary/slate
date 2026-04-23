@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import { signUpSchema, signInSchema } from "@repo/common/types";
+import {prisma} from '@repo/db/client'
 
     class AuthenticationController {
         public async signUp(req: Request, res: Response) {
             // Implement signup logic here
             const validationResult = signUpSchema.safeParse(req.body);
+            
+            
 
             if (validationResult.error) {
                 return res.status(400).json({ error: validationResult.error });
@@ -12,6 +15,8 @@ import { signUpSchema, signInSchema } from "@repo/common/types";
 
             const { firstName, lastName, email, password } = validationResult.data;
 
+            
+            
 
         }
 

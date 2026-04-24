@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { signUpSchema, signInSchema } from "@repo/common/types";
-
+import { prisma } from "@repo/db/client";
 
 class AuthenticationController {
     public async signUp(req: Request, res: Response) {
@@ -14,7 +14,11 @@ class AuthenticationController {
         }
 
         const { name, email, password } = validationResult.data;
-        
+        await prisma.user.create({data: {
+            name,
+            email,
+            password
+        }})
 
 
     }

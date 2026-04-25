@@ -7,3 +7,4 @@ const roomController = new RoomController();
 
 
 roomRouter.post('/create', authenticationMiddleware, roomController.createRoom.bind(roomController));
+roomRouter.get('/chats/:roomId', authenticationMiddleware, roomController.getChats.bind(roomController));

@@ -14,12 +14,14 @@ class AuthenticationController {
         }
 
         const { name, email, password } = validationResult.data;
-        await prisma.user.create({data: {
-            name,
-            email,
-            password
-        }})
 
+        const user = await prisma.user.create({
+            data: {
+                name,
+                email,
+                password
+            }
+        })
 
     }
 
